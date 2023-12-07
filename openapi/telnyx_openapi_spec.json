@@ -5707,7 +5707,7 @@
         "x-latency-category": "interactive"
       }
     },
-    "/campaign": {
+    "/v2/campaign": {
       "get": {
         "tags": [
           "Campaign"
@@ -5716,7 +5716,7 @@
         "operationId": "list_campaigns_campaign_get",
         "parameters": [
           {
-            "required": true,
+            "required": false,
             "schema": {
               "title": "Brandid",
               "type": "string"
@@ -5775,7 +5775,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/campaign/acceptSharing/{campaignId}": {
+    "/v2/campaign/acceptSharing/{campaignId}": {
       "post": {
         "tags": [
           "Campaign"
@@ -5783,20 +5783,16 @@
         "summary": "Accept Shared Campaign",
         "description": "Manually accept a campaign shared with Telnyx",
         "operationId": "accept_shared_campaign_campaign_acceptSharing__campaign_id__post",
-        "parameters": [
-          {
-            "description": "TCR's ID for the campaign to import",
-            "required": true,
-            "schema": {
-              "title": "Campaignid",
-              "pattern": "^C[A-Z0-9]{5,8}$",
-              "type": "string",
-              "description": "TCR's ID for the campaign to import"
-            },
-            "name": "campaignId",
-            "in": "path"
-          }
-        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/parameters/ResourceId"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -5820,7 +5816,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/campaign/usecase/cost": {
+    "/v2/campaign/usecase/cost": {
       "get": {
         "tags": [
           "Campaign"
@@ -5863,7 +5859,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/campaign/{campaignId}": {
+    "/v2/campaign/{campaignId}": {
       "delete": {
         "tags": [
           "Campaign"
@@ -6001,7 +5997,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/campaign/{campaignId}/mnoMetadata": {
+    "/v2/campaign/{campaignId}/mnoMetadata": {
       "get": {
         "tags": [
           "Campaign"
@@ -6048,7 +6044,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/campaign/{campaignId}/operationStatus": {
+    "/v2/campaign/{campaignId}/operationStatus": {
       "get": {
         "tags": [
           "Campaign"
@@ -6093,7 +6089,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/campaign/{campaignId}/osr/attributes": {
+    "/v2/campaign/{campaignId}/osr/attributes": {
       "get": {
         "tags": [
           "Campaign"
@@ -6137,7 +6133,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/campaign/{campaignId}/sharing": {
+    "/v2/campaign/{campaignId}/sharing": {
       "get": {
         "tags": [
           "Campaign"
@@ -6487,7 +6483,7 @@
         }
       ]
     },
-    "/comments": {
+    "/v2/comments": {
       "get": {
         "summary": "Retrieve all comments",
         "operationId": "listComments",
@@ -6553,7 +6549,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/comments/{id}": {
+    "/v2/comments/{id}": {
       "get": {
         "summary": "Retrieve a comment",
         "operationId": "retrieveComment",
@@ -6582,24 +6578,23 @@
         "x-latency-category": "responsive"
       }
     },
-    "/comments/{id}/read": {
+    "v2/comments/{id}/read": {
       "patch": {
         "summary": "Mark a comment as read",
         "operationId": "markCommentRead",
         "tags": [
           "Phone Number Orders"
         ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The comment ID.",
-            "required": true,
-            "schema": {
-              "type": "string"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/parameters/ResourceId"
+              }
             }
-          }
-        ],
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "$ref": "#/components/responses/ReadCommentResponse"
@@ -25298,7 +25293,7 @@
         }
       }
     },
-    "/texml_applications": {
+    "/v2/texml_applications": {
       "get": {
         "description": "Returns a list of your TeXML Applications.",
         "summary": "List all TeXML Applications",
@@ -25377,7 +25372,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/texml_applications/{id}": {
+    "/v2/texml_applications/{id}": {
       "delete": {
         "description": "Deletes a TeXML Application.",
         "summary": "Deletes a TeXML Application",
@@ -42536,207 +42531,209 @@
         ],
         "type": "object",
         "properties": {
-          "affiliateMarketing": {
-            "title": "Affiliatemarketing",
-            "type": "boolean",
-            "description": "Does message content controlled by affiliate marketing other than the brand?\n\nThis field is deprecated.",
-            "deprecated": true
-          },
-          "ageGated": {
-            "title": "Agegated",
-            "type": "boolean",
-            "description": "Age gated content in campaign."
-          },
-          "autoRenewal": {
-            "title": "Autorenewal",
-            "type": "boolean",
-            "description": "Campaign subscription auto-renewal status."
-          },
-          "billedDate": {
-            "title": "Billeddate",
-            "type": "string",
-            "description": "Campaign recent billed date."
-          },
-          "brandId": {
-            "title": "Brandid",
-            "type": "string",
-            "description": "Alphanumeric identifier of the brand associated with this campaign."
-          },
-          "campaignId": {
-            "title": "Campaignid",
-            "type": "string",
-            "description": "Alphanumeric identifier assigned by the registry for a campaign. This identifier is required by the NetNumber OSR SMS enabling process of 10DLC."
-          },
-          "createDate": {
-            "title": "Createdate",
-            "type": "string",
-            "description": "Unix timestamp when campaign was created."
-          },
-          "cspId": {
-            "title": "Cspid",
-            "type": "string",
-            "description": "Alphanumeric identifier of the CSP associated with this campaign."
-          },
-          "description": {
-            "title": "Description",
-            "type": "string",
-            "description": "Summary description of this campaign."
-          },
-          "directLending": {
-            "title": "Directlending",
-            "type": "boolean"
-          },
-          "embeddedLink": {
-            "title": "Embeddedlink",
-            "type": "boolean",
-            "description": "Does message generated by the campaign include URL link in SMS?"
-          },
-          "embeddedPhone": {
-            "title": "Embeddedphone",
-            "type": "boolean",
-            "description": "Does message generated by the campaign include phone number in SMS?"
-          },
-          "helpKeywords": {
-            "title": "Helpkeywords",
-            "type": "string",
-            "description": "Subscriber help keywords. Multiple keywords are comma separated without space."
-          },
-          "helpMessage": {
-            "title": "Helpmessage",
-            "type": "string",
-            "description": "Help message of the campaign."
-          },
-          "messageFlow": {
-            "title": "Messageflow",
-            "type": "string",
-            "description": "Message flow description."
-          },
-          "mock": {
-            "title": "Mock",
-            "type": "boolean",
-            "description": "Campaign created from mock brand. Mocked campaign cannot be shared with an upstream CNP."
-          },
-          "nextRenewalOrExpirationDate": {
-            "title": "Nextrenewalorexpirationdate",
-            "type": "string",
-            "description": "When the campaign would be due for its next renew/bill date."
-          },
-          "numberPool": {
-            "title": "Numberpool",
-            "type": "boolean",
-            "description": "Does campaign utilize pool of phone numbers?"
-          },
-          "optinKeywords": {
-            "title": "Optinkeywords",
-            "type": "string",
-            "description": "Subscriber opt-in keywords. Multiple keywords are comma separated without space."
-          },
-          "optinMessage": {
-            "title": "Optinmessage",
-            "type": "string",
-            "description": "Subscriber opt-in message."
-          },
-          "optoutKeywords": {
-            "title": "Optoutkeywords",
-            "type": "string",
-            "description": "Subscriber opt-out keywords. Multiple keywords are comma separated without space."
-          },
-          "optoutMessage": {
-            "title": "Optoutmessage",
-            "type": "string",
-            "description": "Subscriber opt-out message."
-          },
-          "referenceId": {
-            "title": "Referenceid",
-            "type": "string",
-            "description": "Caller supplied campaign reference ID. If supplied, the value must be unique across all submitted campaigns. Can be used to prevent duplicate campaign registrations."
-          },
-          "resellerId": {
-            "title": "Resellerid",
-            "type": "string",
-            "description": "Alphanumeric identifier of the reseller that you want to associate with this campaign."
-          },
-          "sample1": {
-            "title": "Sample1",
-            "type": "string",
-            "description": "Message sample. Some campaign tiers require 1 or more message samples."
-          },
-          "sample2": {
-            "title": "Sample2",
-            "type": "string",
-            "description": "Message sample. Some campaign tiers require 2 or more message samples."
-          },
-          "sample3": {
-            "title": "Sample3",
-            "type": "string",
-            "description": "Message sample. Some campaign tiers require 3 or more message samples."
-          },
-          "sample4": {
-            "title": "Sample4",
-            "type": "string",
-            "description": "Message sample. Some campaign tiers require 4 or more message samples."
-          },
-          "sample5": {
-            "title": "Sample5",
-            "type": "string",
-            "description": "Message sample. Some campaign tiers require 5 or more message samples."
-          },
-          "status": {
-            "title": "Status",
-            "type": "string",
-            "description": "Current campaign status. Possible values: ACTIVE, EXPIRED. A newly created campaign defaults to ACTIVE status. "
-          },
-          "subUsecases": {
-            "title": "Subusecases",
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "type": "string"
+          "data": {
+            "affiliateMarketing": {
+              "title": "Affiliatemarketing",
+              "type": "boolean",
+              "description": "Does message content controlled by affiliate marketing other than the brand?\n\nThis field is deprecated.",
+              "deprecated": true
             },
-            "description": "Campaign sub-usecases. Must be of defined valid sub-usecase types. Use `/registry/enum/usecase` operation to retrieve list of valid sub-usecases"
-          },
-          "subscriberHelp": {
-            "title": "Subscriberhelp",
-            "type": "boolean",
-            "description": "Does campaign responds to help keyword(s)?"
-          },
-          "subscriberOptin": {
-            "title": "Subscriberoptin",
-            "type": "boolean",
-            "description": "Does campaign require subscriber to opt-in before SMS is sent to subscriber?"
-          },
-          "subscriberOptout": {
-            "title": "Subscriberoptout",
-            "type": "boolean",
-            "description": "Does campaign support subscriber opt-out keyword(s)?"
-          },
-          "termsAndConditions": {
-            "title": "Termsandconditions",
-            "type": "boolean",
-            "description": "Is terms & conditions accepted?"
-          },
-          "usecase": {
-            "title": "Usecase",
-            "type": "string",
-            "description": "Campaign usecase. Must be of defined valid types. Use `/registry/enum/usecase` operation to retrieve usecases available for given brand."
-          },
-          "vertical": {
-            "title": "Vertical",
-            "type": "string",
-            "description": "Business/industry segment of this campaign (Deprecated). Must be of defined valid types. Use `/registry/enum/vertical` operation to retrieve verticals available for given brand, vertical combination.\n\nThis field is deprecated.",
-            "deprecated": true
-          },
-          "webhookURL": {
-            "title": "WebhookURL",
-            "type": "string",
-            "description": "Webhook to which campaign status updates are sent.",
-            "example": "https://example.com/webhook"
-          },
-          "webhookFailoverURL": {
-            "title": "WebhookFailoverURL",
-            "type": "string",
-            "description": "Failover webhook to which campaign status updates are sent.",
-            "example": "https://example.com/failover-webhook"
+            "ageGated": {
+              "title": "Agegated",
+              "type": "boolean",
+              "description": "Age gated content in campaign."
+            },
+            "autoRenewal": {
+              "title": "Autorenewal",
+              "type": "boolean",
+              "description": "Campaign subscription auto-renewal status."
+            },
+            "billedDate": {
+              "title": "Billeddate",
+              "type": "string",
+              "description": "Campaign recent billed date."
+            },
+            "brandId": {
+              "title": "Brandid",
+              "type": "string",
+              "description": "Alphanumeric identifier of the brand associated with this campaign."
+            },
+            "campaignId": {
+              "title": "Campaignid",
+              "type": "string",
+              "description": "Alphanumeric identifier assigned by the registry for a campaign. This identifier is required by the NetNumber OSR SMS enabling process of 10DLC."
+            },
+            "createDate": {
+              "title": "Createdate",
+              "type": "string",
+              "description": "Unix timestamp when campaign was created."
+            },
+            "cspId": {
+              "title": "Cspid",
+              "type": "string",
+              "description": "Alphanumeric identifier of the CSP associated with this campaign."
+            },
+            "description": {
+              "title": "Description",
+              "type": "string",
+              "description": "Summary description of this campaign."
+            },
+            "directLending": {
+              "title": "Directlending",
+              "type": "boolean"
+            },
+            "embeddedLink": {
+              "title": "Embeddedlink",
+              "type": "boolean",
+              "description": "Does message generated by the campaign include URL link in SMS?"
+            },
+            "embeddedPhone": {
+              "title": "Embeddedphone",
+              "type": "boolean",
+              "description": "Does message generated by the campaign include phone number in SMS?"
+            },
+            "helpKeywords": {
+              "title": "Helpkeywords",
+              "type": "string",
+              "description": "Subscriber help keywords. Multiple keywords are comma separated without space."
+            },
+            "helpMessage": {
+              "title": "Helpmessage",
+              "type": "string",
+              "description": "Help message of the campaign."
+            },
+            "messageFlow": {
+              "title": "Messageflow",
+              "type": "string",
+              "description": "Message flow description."
+            },
+            "mock": {
+              "title": "Mock",
+              "type": "boolean",
+              "description": "Campaign created from mock brand. Mocked campaign cannot be shared with an upstream CNP."
+            },
+            "nextRenewalOrExpirationDate": {
+              "title": "Nextrenewalorexpirationdate",
+              "type": "string",
+              "description": "When the campaign would be due for its next renew/bill date."
+            },
+            "numberPool": {
+              "title": "Numberpool",
+              "type": "boolean",
+              "description": "Does campaign utilize pool of phone numbers?"
+            },
+            "optinKeywords": {
+              "title": "Optinkeywords",
+              "type": "string",
+              "description": "Subscriber opt-in keywords. Multiple keywords are comma separated without space."
+            },
+            "optinMessage": {
+              "title": "Optinmessage",
+              "type": "string",
+              "description": "Subscriber opt-in message."
+            },
+            "optoutKeywords": {
+              "title": "Optoutkeywords",
+              "type": "string",
+              "description": "Subscriber opt-out keywords. Multiple keywords are comma separated without space."
+            },
+            "optoutMessage": {
+              "title": "Optoutmessage",
+              "type": "string",
+              "description": "Subscriber opt-out message."
+            },
+            "referenceId": {
+              "title": "Referenceid",
+              "type": "string",
+              "description": "Caller supplied campaign reference ID. If supplied, the value must be unique across all submitted campaigns. Can be used to prevent duplicate campaign registrations."
+            },
+            "resellerId": {
+              "title": "Resellerid",
+              "type": "string",
+              "description": "Alphanumeric identifier of the reseller that you want to associate with this campaign."
+            },
+            "sample1": {
+              "title": "Sample1",
+              "type": "string",
+              "description": "Message sample. Some campaign tiers require 1 or more message samples."
+            },
+            "sample2": {
+              "title": "Sample2",
+              "type": "string",
+              "description": "Message sample. Some campaign tiers require 2 or more message samples."
+            },
+            "sample3": {
+              "title": "Sample3",
+              "type": "string",
+              "description": "Message sample. Some campaign tiers require 3 or more message samples."
+            },
+            "sample4": {
+              "title": "Sample4",
+              "type": "string",
+              "description": "Message sample. Some campaign tiers require 4 or more message samples."
+            },
+            "sample5": {
+              "title": "Sample5",
+              "type": "string",
+              "description": "Message sample. Some campaign tiers require 5 or more message samples."
+            },
+            "status": {
+              "title": "Status",
+              "type": "string",
+              "description": "Current campaign status. Possible values: ACTIVE, EXPIRED. A newly created campaign defaults to ACTIVE status. "
+            },
+            "subUsecases": {
+              "title": "Subusecases",
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Campaign sub-usecases. Must be of defined valid sub-usecase types. Use `/registry/enum/usecase` operation to retrieve list of valid sub-usecases"
+            },
+            "subscriberHelp": {
+              "title": "Subscriberhelp",
+              "type": "boolean",
+              "description": "Does campaign responds to help keyword(s)?"
+            },
+            "subscriberOptin": {
+              "title": "Subscriberoptin",
+              "type": "boolean",
+              "description": "Does campaign require subscriber to opt-in before SMS is sent to subscriber?"
+            },
+            "subscriberOptout": {
+              "title": "Subscriberoptout",
+              "type": "boolean",
+              "description": "Does campaign support subscriber opt-out keyword(s)?"
+            },
+            "termsAndConditions": {
+              "title": "Termsandconditions",
+              "type": "boolean",
+              "description": "Is terms & conditions accepted?"
+            },
+            "usecase": {
+              "title": "Usecase",
+              "type": "string",
+              "description": "Campaign usecase. Must be of defined valid types. Use `/registry/enum/usecase` operation to retrieve usecases available for given brand."
+            },
+            "vertical": {
+              "title": "Vertical",
+              "type": "string",
+              "description": "Business/industry segment of this campaign (Deprecated). Must be of defined valid types. Use `/registry/enum/vertical` operation to retrieve verticals available for given brand, vertical combination.\n\nThis field is deprecated.",
+              "deprecated": true
+            },
+            "webhookURL": {
+              "title": "WebhookURL",
+              "type": "string",
+              "description": "Webhook to which campaign status updates are sent.",
+              "example": "https://example.com/webhook"
+            },
+            "webhookFailoverURL": {
+              "title": "WebhookFailoverURL",
+              "type": "string",
+              "description": "Failover webhook to which campaign status updates are sent.",
+              "example": "https://example.com/failover-webhook"
+            }
           }
         },
         "description": "Campaign is generated by the 10DLC registry once the corresponding campaign request is approved. Each campaign is assigned a unique identifier - **campaignId**. Once a campaign is activated, limited information is published to the NetNumber OSR service for consumption by members of the ecosystem. When a campaign is suspended(reversible) or expired(non-reversible), campaign data is deleted from the OSR service. Most attributes of campaignare immutable, including **usecase**, **vertical**, **brandId** and **cspId**."
