@@ -1729,7 +1729,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/available_phone_number_blocks": {
+    "/v2/available_phone_number_blocks": {
       "get": {
         "summary": "List available phone number blocks",
         "operationId": "listAvailablePhoneNumberBlocks",
@@ -2947,7 +2947,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/bulk_sim_card_actions": {
+    "/v2/bulk_sim_card_actions": {
       "get": {
         "operationId": "ListBulkSIMCardActions",
         "summary": "List bulk SIM card actions",
@@ -2987,7 +2987,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/bulk_sim_card_actions/{id}": {
+    "/v2/bulk_sim_card_actions/{id}": {
       "get": {
         "operationId": "BulkSimCardActionGet",
         "summary": "Get bulk SIM card action details",
@@ -6310,7 +6310,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/channel_zones": {
+    "/v2/channel_zones": {
       "get": {
         "summary": "Get list of channel zones",
         "description": "List of channel zones with their countries",
@@ -6334,7 +6334,7 @@
         "x-latency-category": "interactive"
       }
     },
-    "/channel_zones/{channel_zone_id}": {
+    "/v2/channel_zones/{channel_zone_id}": {
       "get": {
         "summary": "Get a specific channel zone",
         "description": "Get a specific channel zone",
@@ -6393,7 +6393,7 @@
         "x-latency-category": "interactive"
       }
     },
-    "/channel_zones/{channel_zone_id}/channel_zone_phone_numbers": {
+    "/v2/channel_zones/{channel_zone_id}/channel_zone_phone_numbers": {
       "get": {
         "summary": "Get the list of phone numbers assigned to a channel zone",
         "description": "Retrieve the assigned phone numbers in a channel zone. Phone numbers assigned to a channel zone can receive concurrent calls up to the quantity reserved in that channel zone. Additional concurrent calls are rejected with a busy signal.",
@@ -6461,7 +6461,7 @@
         "x-latency-category": "interactive"
       }
     },
-    "/channel_zones/{channel_zone_id}/channel_zone_phone_numbers/{phone_number}": {
+    "/v2/channel_zones/{channel_zone_id}/channel_zone_phone_numbers/{phone_number}": {
       "delete": {
         "summary": "Unassign a phone number from a channel zone",
         "operationId": "unassignPhoneNumber",
@@ -8570,7 +8570,7 @@
         "x-latency-category": "interactive"
       }
     },
-    "/dialogflow_connections/{connection_id}": {
+    "/v2/dialogflow_connections/{connection_id}": {
       "delete": {
         "summary": "Delete stored Dialogflow Connection",
         "description": "Deletes a stored Dialogflow Connection.",
@@ -10550,18 +10550,16 @@
         "tags": [
           "Programmable Fax Commands"
         ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The unique identifier of a fax.",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/parameters/ResourceId"
+              }
             }
-          }
-        ],
+          },
+          "required": true
+        },
         "responses": {
           "202": {
             "$ref": "#/components/responses/CancelFaxResponse"
@@ -10982,7 +10980,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/global_ip_allowed_ports": {
+    "/v2/global_ip_allowed_ports": {
       "get": {
         "summary": "List all Global IP Allowed Ports",
         "description": "List all Global IP Allowed Ports",
@@ -11001,7 +10999,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/global_ip_assignment_health": {
+    "/v2/global_ip_assignment_health": {
       "description": "Global IP Assignment Health Check Metrics over time",
       "get": {
         "operationId": "GlobalIpAssignmentHealth",
@@ -11046,7 +11044,7 @@
       },
       "summary": "Global IP Assignment Health Check Metrics"
     },
-    "/global_ip_assignments": {
+    "/v2/global_ip_assignments": {
       "get": {
         "summary": "List all Global IP assignments",
         "description": "List all Global IP assignments.",
@@ -11103,7 +11101,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/global_ip_assignments/{id}": {
+    "/v2/global_ip_assignments/{id}": {
       "delete": {
         "summary": "Delete a Global IP assignment",
         "description": "Delete a Global IP assignment.",
@@ -11181,7 +11179,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/global_ip_assignments_usage": {
+    "/v2/global_ip_assignments_usage": {
       "description": "Global IP Assignment Usage Metrics over time",
       "get": {
         "operationId": "GlobalIpAssignmentUsage",
@@ -11348,7 +11346,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/global_ip_latency": {
+    "/v2/global_ip_latency": {
       "description": "Global IP Latency Metrics over time",
       "get": {
         "operationId": "GlobalIpLatency",
@@ -11384,7 +11382,7 @@
       },
       "summary": "Global IP Latency Metrics"
     },
-    "/global_ip_protocols": {
+    "/v2/global_ip_protocols": {
       "get": {
         "summary": "List all Global IP Protocols",
         "description": "List all Global IP Protocols",
@@ -11403,7 +11401,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/global_ip_usage": {
+    "/v2/global_ip_usage": {
       "description": "Global IP Usage Metrics over time",
       "get": {
         "operationId": "GlobalIpUsage",
@@ -11439,7 +11437,7 @@
       },
       "summary": "Global IP Usage Metrics"
     },
-    "/global_ips": {
+    "/v2/global_ips": {
       "get": {
         "summary": "List all Global IPs",
         "description": "List all Global IPs.",
@@ -11496,7 +11494,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/global_ips/{id}": {
+    "/v2/global_ips/{id}": {
       "delete": {
         "summary": "Delete a Global IP",
         "description": "Delete a Global IP.",
@@ -12027,7 +12025,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/ledger_billing_group_reports": {
+    "/v2/ledger_billing_group_reports": {
       "post": {
         "summary": "Create a ledger billing group report",
         "operationId": "createLedgerBillingGroupReport",
@@ -12056,7 +12054,7 @@
         }
       }
     },
-    "/ledger_billing_group_reports/{id}": {
+    "/v2/ledger_billing_group_reports/{id}": {
       "get": {
         "summary": "Retrieve a ledger billing group report",
         "operationId": "retrieveLedgerBillingGroupReport",
@@ -18892,11 +18890,16 @@
         ],
         "description": "Activate each number in a porting order asynchronously. This operation is limited to US FastPort orders only.",
         "operationId": "activatePortingOrder",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/PathPortingOrderID"
-          }
-        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/parameters/ResourceId"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "202": {
             "$ref": "#/components/responses/ShowPortingOrdersActivationJob"
@@ -52472,77 +52475,78 @@
         "required": [
           "record_type",
           "countries",
-          "id",
           "name",
           "channels"
         ],
         "type": "object",
         "properties": {
-          "record_type": {
-            "type": "string",
-            "enum": [
-              "channel_zone"
-            ],
-            "example": "channel_zone"
-          },
-          "countries": {
-            "type": "array",
-            "items": {
-              "type": "string"
+          "data": {
+            "record_type": {
+              "type": "string",
+              "enum": [
+                "channel_zone"
+              ],
+              "example": "channel_zone"
             },
-            "description": "List of countries (in ISO 3166-2, capitalized) members of the billing channel zone",
-            "example": [
-              "BE",
-              "EL",
-              "LT",
-              "PT",
-              "BG",
-              "ES",
-              "LU",
-              "RO",
-              "CZ",
-              "FR",
-              "HU",
-              "SI",
-              "DK",
-              "HR",
-              "MT",
-              "SK",
-              "DE",
-              "IT",
-              "NL",
-              "FI",
-              "EE",
-              "CY",
-              "AT",
-              "SE",
-              "IE",
-              "LV",
-              "PL"
-            ]
-          },
-          "id": {
-            "type": "string",
-            "example": "1653e6a1-4bfd-4857-97c6-6a51e1c34477"
-          },
-          "name": {
-            "type": "string",
-            "example": "Euro channel zone"
-          },
-          "channels": {
-            "type": "integer",
-            "format": "int64",
-            "example": 7
-          },
-          "created_at": {
-            "type": "string",
-            "description": "ISO 8601 formatted date of when the channel zone was created",
-            "example": "2019-01-23T18:10:02.574Z"
-          },
-          "updated_at": {
-            "type": "string",
-            "description": "ISO 8601 formatted date of when the channel zone was updated",
-            "example": "2019-01-23T18:10:02.574Z"
+            "countries": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "List of countries (in ISO 3166-2, capitalized) members of the billing channel zone",
+              "example": [
+                "BE",
+                "EL",
+                "LT",
+                "PT",
+                "BG",
+                "ES",
+                "LU",
+                "RO",
+                "CZ",
+                "FR",
+                "HU",
+                "SI",
+                "DK",
+                "HR",
+                "MT",
+                "SK",
+                "DE",
+                "IT",
+                "NL",
+                "FI",
+                "EE",
+                "CY",
+                "AT",
+                "SE",
+                "IE",
+                "LV",
+                "PL"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "example": "1653e6a1-4bfd-4857-97c6-6a51e1c34477"
+            },
+            "name": {
+              "type": "string",
+              "example": "Euro channel zone"
+            },
+            "channels": {
+              "type": "integer",
+              "format": "int64",
+              "example": 7
+            },
+            "created_at": {
+              "type": "string",
+              "description": "ISO 8601 formatted date of when the channel zone was created",
+              "example": "2019-01-23T18:10:02.574Z"
+            },
+            "updated_at": {
+              "type": "string",
+              "description": "ISO 8601 formatted date of when the channel zone was updated",
+              "example": "2019-01-23T18:10:02.574Z"
+            }
           }
         }
       },
