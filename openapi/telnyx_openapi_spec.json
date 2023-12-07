@@ -795,7 +795,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/actions/bulk/telephony_credentials": {
+    "/v2/actions/bulk/telephony_credentials": {
       "delete": {
         "description": "Delete several credentials in bulk.",
         "summary": "Delete several credentials",
@@ -925,7 +925,7 @@
         }
       }
     },
-    "/actions/purchase/esims": {
+    "/v2/actions/purchase/esims": {
       "post": {
         "x-latency-category": "background",
         "summary": "Purchase eSIMs",
@@ -977,7 +977,7 @@
         }
       }
     },
-    "/actions/{action}/telephony_credentials": {
+    "/v2/actions/{action}/telephony_credentials": {
       "post": {
         "description": "Perform activate or deactivate action on all credentials filtered by the provided tag. Activate action will change the status to active, making it possible to connect calls with the credential. Deactivate action will change the status to inactive, making it impossible to connect calls with the credential.",
         "summary": "Perform activate or deactivate action on all credentials filtered by the provided tag.",
