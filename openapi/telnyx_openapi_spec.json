@@ -6499,7 +6499,7 @@
               "type": "string",
               "example": "sub_number_order"
             },
-            "required": true
+            "required": false
           },
           {
             "name": "filter[comment_record_id]",
@@ -6509,7 +6509,7 @@
               "type": "string",
               "example": "8ffb3622-7c6b-4ccc-b65f-7a3dc0099576"
             },
-            "required": true
+            "required": false
           }
         ],
         "responses": {
@@ -6578,7 +6578,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "v2/comments/{id}/read": {
+    "/v2/comments/{id}/read": {
       "patch": {
         "summary": "Mark a comment as read",
         "operationId": "markCommentRead",
@@ -8104,7 +8104,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/custom_storage_credentials/{connection_id}": {
+    "/v2/custom_storage_credentials/{connection_id}": {
       "delete": {
         "summary": "Delete stored credentials",
         "description": "Deletes a stored custom credentials configuration.",
@@ -9201,7 +9201,7 @@
         "x-latency-category": "responsive"
       }
     },
-    "/enum/{endpoint}": {
+    "/v2/enum/{endpoint}": {
       "get": {
         "tags": [
           "Enum"
